@@ -22,8 +22,8 @@ carRouter.get('/:id',async (req,res)=>{
 carRouter.post('/create',async (req,res)=>{
     const {carName, carBrand, carType, carPrice} = req.body
     console.log(carName,carBrand,carType,carPrice)
-    const result = insertCar(carName,carBrand,carType,carPrice)  
-    res.status(201).send(result)
+    const result = (await insertCar(carName, carBrand, carType, carPrice))
+    (result>0)? res.status(201).send("Success") : res.status(422).send("Error")
 })
 
 

@@ -20,9 +20,10 @@ purchaseRouter.get('/:id',async (req,res)=>{
 
 // insert the purchase
 purchaseRouter.post('/create',async (req,res)=>{
-    const {purchaseName, purchaseBrand, purchaseType, purchasePrice} = req.body
+    const {purchaseName, purchaseBrand, purchaseType, purchasePrice, purchaseOrderId, price, count, carId, purchaseValue} = req.body
     console.log(purchaseName,purchaseBrand,purchaseType,purchasePrice)
-    const result = insertPurchase(purchaseName,purchaseBrand,purchaseType,purchasePrice)  
+    const result = await insertPurchase(purchaseName, purchaseBrand, purchaseType, purchasePrice, purchaseOrderId, price, count, carId, purchaseValue)
+    (result>0)? res.status(201).send("Success") : res.status(422).send("Error")
     res.status(201).send(result)
 })
 

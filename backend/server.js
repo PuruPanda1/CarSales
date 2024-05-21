@@ -1,7 +1,9 @@
 import express from "express"
 
-import {userRouter} from "./routers/users.js"
-import {carRouter} from "./routers/car.js"
+import {userRouter} from "./routers/Users.js"
+import {carRouter} from "./routers/Car.js"
+import {PurchaseOrderRouter} from "./routers/PurchaseOrder.js"
+import {SaleOrderRouter} from "./routers/SaleOrder.js";
 
 const app = express()
 
@@ -10,6 +12,10 @@ app.use(express.json())
 app.use("/users", userRouter)
 
 app.use('/cars', carRouter)
+
+app.use('/purchaseorders', PurchaseOrderRouter)
+
+app.use('/saleorders', SaleOrderRouter)
 
 app.get("/info", (req, res)=>{
     res.json({"users": ["Shilla","Chameli","Champa"]})
